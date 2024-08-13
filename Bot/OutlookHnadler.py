@@ -80,6 +80,9 @@ def read_email_content(driver):
     except Exception as e:
         print(f"Error reading email content: {e}")
 
+
+    
+
 if __name__ == "__main__":
     driver = init_driver()
     login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')

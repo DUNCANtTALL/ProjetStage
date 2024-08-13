@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const csv = require('csv-parser');
 
-const filePath = path.join(__dirname, 'output_file.csv');
+const filePath = path.join(__dirname,'../csv/output_file.csv' );
 const getAttendanceData = () => {
   return new Promise((resolve, reject) => {
     const results = [];

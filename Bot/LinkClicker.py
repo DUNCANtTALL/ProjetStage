@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 def init_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("start-maximized")
@@ -18,9 +19,11 @@ def init_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument("--remote-allow-origins=*")
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+    driver = webdriver.Chrome(service=se    service = ChromeService(executable_path="C:/Users/driss/OneDrive/Bureau/chromedriver.exe")
+rvice, options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver
+
 
 def open_website(driver, url):
     driver.get(url)
