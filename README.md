@@ -24,6 +24,9 @@ Ce projet de gestion d'assiduité a pour objectif de simplifier et d'automatiser
 
 Le bot est conçu pour interagir automatiquement avec l'interface web d'Outlook afin de télécharger des rapports d'assiduité au format CSV. Les principales étapes comprennent :
 
+- **Entrer au Site** : Entrer au site de université de l'Akhawayn
+- **Connexion au portail des Etudiant**: en Clickant sur Canvas LLM et s'authantifier avec l'address academique 
+- **Remplire le formulaire** : remplire le formulaire avec la date de debut de de fin et clicker sur submit  
 - **Connexion à Outlook** : Utilisation de Selenium pour se connecter à un compte Outlook.
 - **Recherche d'Emails** : Attente de nouveaux emails contenant les rapports d'assiduité.
 - **Téléchargement des Liens Dynamiques** : Identification et téléchargement des fichiers CSV depuis les liens présents dans les emails.
