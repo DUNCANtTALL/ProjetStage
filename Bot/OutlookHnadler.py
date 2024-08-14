@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.action_chains import ActionChains
 from datetime import datetime
 import time
 
@@ -17,6 +18,8 @@ def init_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument("--remote-allow-origins=*")
+    
+    
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver
@@ -46,7 +49,7 @@ def login_to_outlook(driver, email, password):
 def wait_for_email(driver):
     wait = WebDriverWait(driver, 30)
     while True:
-        current_time = "17:39"
+        current_time = datetime.now().strftime('%H:%M')
         print(f"Checking for email at {current_time}")
         try:
             wait.until(
@@ -57,36 +60,57 @@ def wait_for_email(driver):
             time.sleep(5)
             break
         except:
-            time.sleep(30)  # Wait for 30 seconds before checking again
+            time.sleep(30) 
             continue
 
-def click_dynamic_link(driver):
+
+def open_link_in_new_tab(driver):
     try:
+        # Wait for the dynamic link to be present
         dynamic_link = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, "//a[contains(@id, 'LPlnk')]"))
         )
-        # Execute JavaScript to remove the security attribute and click the link
-        driver.execute_script("arguments[0].removeAttribute('onclick'); arguments[0].click();", dynamic_link)
-        time.sleep(5)  # Adjust sleep time if needed
+        
+        # Log action
+        print("Dynamic link found, opening in new tab via JavaScript")
+        
+        # Use JavaScript to open the link in a new tab
+        driver.execute_script("window.open(arguments[0].href, '_blank');", dynamic_link)
+        
+        # Switch to the new tab
+        WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
+        driver.switch_to.window(driver.window_handles[-1])
+        time.sleep(3)  # Adjust sleep time if needed
+        
+        # Log success
+        print("Switched to the new tab successfully")
+        
+    except Exception as e:
+        print(f"Error during JavaScript tab opening: {e}")
+
+def click_dynamic_link(driver):
+    try:
+        open_link_in_new_tab(driver)
+        time.sleep(1)  # Adjust sleep time if needed
     except Exception as e:
         print(f"Error: {e}")
 
 def read_email_content(driver):
     try:
         content = WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.XPATH, '//div[@class="rps_12c"]'))  # Adjust the XPath to target the email content
+            EC.presence_of_element_located((By.XPATH, '//div[@class="rps_12c"]')) 
         )
         print(content.text)
     except Exception as e:
         print(f"Error reading email content: {e}")
 
 
-    
 
-if __name__ == "__main__":
+    
+def main2(): 
     driver = init_driver()
     login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')
     wait_for_email(driver)
-    read_email_content(driver)
     click_dynamic_link(driver)
     driver.quit()
+   

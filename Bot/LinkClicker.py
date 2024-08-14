@@ -19,8 +19,8 @@ def init_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument("--remote-allow-origins=*")
-    driver = webdriver.Chrome(service=se    service = ChromeService(executable_path="C:/Users/driss/OneDrive/Bureau/chromedriver.exe")
-rvice, options=options)
+    service = ChromeService(executable_path="C:/Users/driss/OneDrive/Bureau/chromedriver.exe")
+    driver = webdriver.Chrome(service=service, options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver
 
@@ -101,7 +101,7 @@ def fill_input_date(driver):
     except Exception as e:
         print(f"An error occurred: {e}")
 
-def main():
+def main1():
     driver = init_driver()
     try:
         open_website(driver, "https://aui.ma/")
@@ -115,5 +115,3 @@ def main():
     finally:
         driver.quit()
 
-if __name__ == "__main__":
-    main()
