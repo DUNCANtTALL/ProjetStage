@@ -1,3 +1,4 @@
+import logging
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -9,7 +10,12 @@ from selenium.webdriver.common.action_chains import ActionChains
 from datetime import datetime
 import time
 
+# Configure logging
+logging.basicConfig(filename='script_log.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 def init_driver():
+    logging.info("Initializing WebDriver")
     options = webdriver.ChromeOptions()
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
@@ -19,12 +25,13 @@ def init_driver():
     options.add_experimental_option('useAutomationExtension', False)
     options.add_argument("--remote-allow-origins=*")
     
-    
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    logging.info("WebDriver initialized successfully")
     return driver
 
 def login_to_outlook(driver, email, password):
+    logging.info("Logging into Outlook")
     driver.get('https://outlook.live.com/owa/')
     time.sleep(3)
     
@@ -45,12 +52,13 @@ def login_to_outlook(driver, email, password):
     stay_signed_in_button = driver.find_element(By.ID, 'idSIButton9')
     stay_signed_in_button.click()
     time.sleep(5)
+    logging.info("Logged into Outlook successfully")
 
 def wait_for_email(driver):
     wait = WebDriverWait(driver, 30)
     while True:
         current_time = datetime.now().strftime('%H:%M')
-        print(f"Checking for email at {current_time}")
+        logging.info(f"Checking for email at {current_time}")
         try:
             wait.until(
                 EC.presence_of_element_located((By.XPATH, f"//span[@title='{current_time}']"))
@@ -58,59 +66,58 @@ def wait_for_email(driver):
             email = driver.find_element(By.XPATH, f"//span[@title='{current_time}']")
             email.click()
             time.sleep(5)
+            logging.info("Email found and opened")
             break
-        except:
-            time.sleep(30) 
+        except Exception as e:
+            logging.warning(f"No email found at {current_time}, retrying: {e}")
+            time.sleep(30)
             continue
-
 
 def open_link_in_new_tab(driver):
     try:
-        # Wait for the dynamic link to be present
+        logging.info("Searching for dynamic link")
         dynamic_link = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, "//a[contains(@id, 'LPlnk')]"))
         )
-        
-        # Log action
-        print("Dynamic link found, opening in new tab via JavaScript")
-        
-        # Use JavaScript to open the link in a new tab
+        logging.info("Dynamic link found, opening in new tab ")
         driver.execute_script("window.open(arguments[0].href, '_blank');", dynamic_link)
         
-        # Switch to the new tab
         WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))
         driver.switch_to.window(driver.window_handles[-1])
-        time.sleep(3)  # Adjust sleep time if needed
-        
-        # Log success
-        print("Switched to the new tab successfully")
+        time.sleep(3)
+        logging.info("Switched to the new tab successfully")
+        logging.info("Csv file was installed successfully")
+
         
     except Exception as e:
-        print(f"Error during JavaScript tab opening: {e}")
+        logging.error(f"Error during tab opening: {e}")
 
 def click_dynamic_link(driver):
     try:
         open_link_in_new_tab(driver)
-        time.sleep(1)  # Adjust sleep time if needed
+        time.sleep(1)
     except Exception as e:
-        print(f"Error: {e}")
+        logging.error(f"Error: {e}")
 
 def read_email_content(driver):
     try:
         content = WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.XPATH, '//div[@class="rps_12c"]')) 
         )
-        print(content.text)
+        logging.info(f"Email content read successfully: {content.text}")
     except Exception as e:
-        print(f"Error reading email content: {e}")
+        logging.error(f"Error reading email content: {e}")
 
-
-
-    
-def main2(): 
+def main2():
+    logging.info("Starting main2 function")
     driver = init_driver()
-    login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')
-    wait_for_email(driver)
-    click_dynamic_link(driver)
-    driver.quit()
-   
+    try:
+        login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')
+        wait_for_email(driver)
+        click_dynamic_link(driver)
+        read_email_content(driver)
+    except Exception as e:
+        logging.error(f"Error during script execution: {e}")
+    finally:
+        driver.quit()
+        logging.info("Driver closed, script finished")

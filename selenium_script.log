@@ -1,0 +1,133 @@
+2024-08-14 17:36:53,595 - INFO - Driver initialized successfully.
+2024-08-14 17:36:56,606 - INFO - Opened website: https://aui.ma/
+2024-08-14 17:36:56,711 - INFO - Cookie popup handled.
+2024-08-14 17:37:02,851 - INFO - Clicked on Canvas LMS.
+2024-08-14 17:37:04,535 - INFO - Filled in email.
+2024-08-14 17:37:06,484 - INFO - Filled in password.
+2024-08-14 17:37:08,102 - INFO - Selected 'Stay signed in'.
+2024-08-14 17:37:11,202 - INFO - Opened website: https://aui.instructure.com/accounts/1/external_tools/108
+2024-08-14 17:37:11,202 - INFO - Opened attendance page.
+2024-08-14 17:37:30,364 - ERROR - Error filling date input: Message: 
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AADF9642+30946]
+	(No symbol) [0x00007FF7AADAE3D9]
+	(No symbol) [0x00007FF7AACA6FDA]
+	(No symbol) [0x00007FF7AACF822C]
+	(No symbol) [0x00007FF7AACF850C]
+	(No symbol) [0x00007FF7AAD3DCB7]
+	(No symbol) [0x00007FF7AAD1CAAF]
+	(No symbol) [0x00007FF7AAD3B041]
+	(No symbol) [0x00007FF7AAD1C813]
+	(No symbol) [0x00007FF7AACEA6E5]
+	(No symbol) [0x00007FF7AACEB021]
+	GetHandleVerifier [0x00007FF7AAF2F84D+1301229]
+	GetHandleVerifier [0x00007FF7AAF3BDC7+1351783]
+	GetHandleVerifier [0x00007FF7AAF32A13+1313971]
+	GetHandleVerifier [0x00007FF7AAE2DD16+245686]
+	(No symbol) [0x00007FF7AADB759F]
+	(No symbol) [0x00007FF7AADB3814]
+	(No symbol) [0x00007FF7AADB39A2]
+	(No symbol) [0x00007FF7AADAA3FF]
+	BaseThreadInitThunk [0x00007FFBB0A3257D+29]
+	RtlUserThreadStart [0x00007FFBB12CAF28+40]
+
+2024-08-14 17:37:30,364 - ERROR - An error occurred in the main flow: Message: 
+Stacktrace:
+	GetHandleVerifier [0x00007FF7AADF9642+30946]
+	(No symbol) [0x00007FF7AADAE3D9]
+	(No symbol) [0x00007FF7AACA6FDA]
+	(No symbol) [0x00007FF7AACF822C]
+	(No symbol) [0x00007FF7AACF850C]
+	(No symbol) [0x00007FF7AAD3DCB7]
+	(No symbol) [0x00007FF7AAD1CAAF]
+	(No symbol) [0x00007FF7AAD3B041]
+	(No symbol) [0x00007FF7AAD1C813]
+	(No symbol) [0x00007FF7AACEA6E5]
+	(No symbol) [0x00007FF7AACEB021]
+	GetHandleVerifier [0x00007FF7AAF2F84D+1301229]
+	GetHandleVerifier [0x00007FF7AAF3BDC7+1351783]
+	GetHandleVerifier [0x00007FF7AAF32A13+1313971]
+	GetHandleVerifier [0x00007FF7AAE2DD16+245686]
+	(No symbol) [0x00007FF7AADB759F]
+	(No symbol) [0x00007FF7AADB3814]
+	(No symbol) [0x00007FF7AADB39A2]
+	(No symbol) [0x00007FF7AADAA3FF]
+	BaseThreadInitThunk [0x00007FFBB0A3257D+29]
+	RtlUserThreadStart [0x00007FFBB12CAF28+40]
+
+2024-08-14 17:37:32,715 - INFO - Driver quit successfully.
+2024-08-14 17:37:36,749 - INFO - Starting main2 function
+2024-08-14 17:37:36,749 - INFO - Initializing WebDriver
+2024-08-14 17:37:36,749 - INFO - ====== WebDriver manager ======
+2024-08-14 17:37:37,893 - INFO - Get LATEST chromedriver version for google-chrome
+2024-08-14 17:37:38,081 - INFO - Get LATEST chromedriver version for google-chrome
+2024-08-14 17:37:38,160 - INFO - There is no [win64] chromedriver "127.0.6533.119" for browser google-chrome "127.0.6533" in cache
+2024-08-14 17:37:38,175 - INFO - Get LATEST chromedriver version for google-chrome
+2024-08-14 17:37:38,459 - INFO - WebDriver version 127.0.6533.119 selected
+2024-08-14 17:37:38,459 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.119/win32/chromedriver-win32.zip
+2024-08-14 17:37:38,459 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.119/win32/chromedriver-win32.zip
+2024-08-14 17:37:38,631 - INFO - Driver downloading response is 200
+2024-08-14 17:37:40,056 - INFO - Get LATEST chromedriver version for google-chrome
+2024-08-14 17:37:40,277 - INFO - Driver has been saved in cache [C:\Users\driss\.wdm\drivers\chromedriver\win64\127.0.6533.119]
+2024-08-14 17:37:41,623 - INFO - WebDriver initialized successfully
+2024-08-14 17:37:41,623 - INFO - Logging into Outlook
+2024-08-14 17:38:06,744 - INFO - Logged into Outlook successfully
+2024-08-14 17:38:06,744 - INFO - Checking for email at 17:38
+2024-08-14 17:38:07,906 - WARNING - No email found at 17:38, retrying: Message: element not interactable
+  (Session info: chrome=127.0.6533.100)
+Stacktrace:
+	GetHandleVerifier [0x008A8923+23283]
+	(No symbol) [0x0086E934]
+	(No symbol) [0x007A05AD]
+	(No symbol) [0x007E4334]
+	(No symbol) [0x007D99EF]
+	(No symbol) [0x0080441C]
+	(No symbol) [0x007D9485]
+	(No symbol) [0x008046B4]
+	(No symbol) [0x0081CB8D]
+	(No symbol) [0x008041B6]
+	(No symbol) [0x007D8017]
+	(No symbol) [0x007D890D]
+	GetHandleVerifier [0x0099A5F3+1013699]
+	GetHandleVerifier [0x009A3E4C+1052700]
+	GetHandleVerifier [0x0099D4B4+1025668]
+	GetHandleVerifier [0x008CEA2B+179195]
+	(No symbol) [0x00876833]
+	(No symbol) [0x00873198]
+	(No symbol) [0x00873337]
+	(No symbol) [0x0086B4BE]
+	BaseThreadInitThunk [0x75BD7BA9+25]
+	RtlInitializeExceptionChain [0x775BC10B+107]
+	RtlClearBits [0x775BC08F+191]
+
+2024-08-14 17:38:37,910 - INFO - Checking for email at 17:38
+2024-08-14 17:38:43,062 - INFO - Email found and opened
+2024-08-14 17:38:43,062 - INFO - Searching for dynamic link
+2024-08-14 17:38:43,109 - INFO - Dynamic link found, opening in new tab 
+2024-08-14 17:38:46,224 - INFO - Switched to the new tab successfully
+2024-08-14 17:38:47,228 - ERROR - Error reading email content: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=127.0.6533.100)
+Stacktrace:
+	GetHandleVerifier [0x008A8923+23283]
+	(No symbol) [0x0086E934]
+	(No symbol) [0x007A0733]
+	(No symbol) [0x0077D2E3]
+	(No symbol) [0x0080A64F]
+	(No symbol) [0x0081C686]
+	(No symbol) [0x008041B6]
+	(No symbol) [0x007D8017]
+	(No symbol) [0x007D890D]
+	GetHandleVerifier [0x0099A5F3+1013699]
+	GetHandleVerifier [0x009A3E4C+1052700]
+	GetHandleVerifier [0x0099D4B4+1025668]
+	GetHandleVerifier [0x008CEA2B+179195]
+	(No symbol) [0x00876833]
+	(No symbol) [0x00873198]
+	(No symbol) [0x00873337]
+	(No symbol) [0x0086B4BE]
+	BaseThreadInitThunk [0x75BD7BA9+25]
+	RtlInitializeExceptionChain [0x775BC10B+107]
+	RtlClearBits [0x775BC08F+191]
+
+2024-08-14 17:38:49,753 - INFO - Driver closed, script finished
