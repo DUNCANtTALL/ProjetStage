@@ -7,9 +7,5 @@ def remove_redundant_lines(file_path):
     df_unique = df_sorted.drop_duplicates(subset=['Course Code', 'SIS Student ID'], keep='last')    
     df_unique.to_csv(file_path, index=False)
 
-# Example usage
-
-file_path = 'ProjetStage/csvManipulation/csvfiles/proxy.csv' # Replace with your file path
-remove_redundant_lines(file_path)
 
 

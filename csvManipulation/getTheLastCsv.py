@@ -8,7 +8,4 @@ def get_latest_csv_file(download_folder):
     latest_file = max(list_of_files, key=os.path.getmtime)    
     return latest_file
 
-# Example usage
-download_folder = "C:/Users/driss/Downloads" 
-latest_csv_file = get_latest_csv_file(download_folder)
-print(f"Latest CSV file: {latest_csv_file}")
+

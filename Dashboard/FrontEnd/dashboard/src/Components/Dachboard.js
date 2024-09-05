@@ -35,7 +35,6 @@ const Dashboard = () => {
             </ResponsiveContainer>
           </Paper>
         </Grid>
-        {/* Add more components here */}
       </Grid>
     </Container>
   );

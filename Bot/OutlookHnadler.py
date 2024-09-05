@@ -32,13 +32,14 @@ def init_driver():
 
 def login_to_outlook(driver, email, password):
     logging.info("Logging into Outlook")
-    driver.get('https://outlook.live.com/owa/')
+    driver.get("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=159&ct=1725376817&rver=7.0.6738.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26deeplink%3dowa%252f%26RpsCsrfState%3db14a6f28-71e7-3903-2153-98add2a5a27f&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c")
     time.sleep(3)
-    
-    sign_in_button = driver.find_element(By.XPATH, '//*[@id="mectrl_headerPicture"]')
+    """""
+    sign_in_button = driver.find_element(By.XPATH, '//*[@id="c-shellmenu_custom_outline_newtab_signin_bhvr100_right"]')
     sign_in_button.click()
     time.sleep(3)
-    
+    """
+
     email_input = driver.find_element(By.XPATH, '//*[@id="i0116"]')
     email_input.send_keys(email)
     email_input.send_keys(Keys.RETURN)
@@ -115,6 +116,7 @@ def main2():
         login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')
         wait_for_email(driver)
         click_dynamic_link(driver)
+        time.sleep(3)
         read_email_content(driver)
     except Exception as e:
         logging.error(f"Error during script execution: {e}")
