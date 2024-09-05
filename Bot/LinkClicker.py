@@ -120,19 +120,19 @@ def fill_input_date(driver):
 
         current_date = datetime.now()
         start_date = current_date.strftime('%d/%m/%Y')
-        end_date = (current_date + timedelta(days=7)).strftime('%d/%m/%Y')
+        end_date = (current_date - timedelta(days=7)).strftime('%d/%m/%Y')
 
         start_date_input = driver.find_element(By.ID, 'report_start_date')
         start_date_input.click()
         start_date_input.clear()
-        start_date_input.send_keys(start_date)
+        start_date_input.send_keys(end_date)
 
         time.sleep(3)
 
         end_date_input = driver.find_element(By.ID, 'report_end_date')
         end_date_input.click()
         end_date_input.clear()
-        end_date_input.send_keys(end_date)
+        end_date_input.send_keys(start_date)
         
         time.sleep(3)
         submit_button = driver.find_element(By.XPATH, "//input[@value='Run report']")

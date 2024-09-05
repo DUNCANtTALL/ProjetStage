@@ -34,10 +34,7 @@ const MenuBar = () => {
                     <MenuItem onClick={() => handleClose('/')}>Attendance Summary Dashboard</MenuItem>
                     <MenuItem onClick={() => handleClose('/course-attendance')}>Course Attendance</MenuItem>
                     <MenuItem onClick={() => handleClose('/course-attendance-comparison')}>Course Attendance Comparison</MenuItem>
-                    <MenuItem onClick={() => handleClose('/course-attendance-heatmap')}>Course Attendance</MenuItem>
                     <MenuItem onClick={() => handleClose('/course-attendance-records')}>Course Attendance Records</MenuItem>
-                    <MenuItem onClick={() => handleClose('/student-performance')}>Student Performance</MenuItem>
-                    <MenuItem onClick={() => handleClose('/daily-weekly-attendance')}>Daily Weekly Attendance</MenuItem>
                     
 
                 </Menu>

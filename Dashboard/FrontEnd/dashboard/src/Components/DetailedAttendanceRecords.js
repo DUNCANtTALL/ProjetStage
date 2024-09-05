@@ -96,7 +96,7 @@ const DetailedAttendanceRecords = () => {
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
-            getRowId={(row) => row['SIS Student ID']} // Ensure this is unique
+            getRowId={(row) => row['SIS Student ID']} 
           />
         </div>
       </Paper>

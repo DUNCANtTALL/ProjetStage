@@ -13,7 +13,4 @@ def extract_attendance_data(input_file_path, output_file_path):
     else:
         grouped_df.to_csv(output_file_path, mode='w', header=True, index=False)
 
-# Example usage
-input_file_path = 'ProjetStage/csvManipulation/csvfiles/proxy.csv'  # Replace with your input file path
-output_file_path = 'ProjetStage/csvManipulation/csvfiles/output_file.csv'  # Replace with your output file path
-extract_attendance_data(input_file_path, output_file_path)
+
