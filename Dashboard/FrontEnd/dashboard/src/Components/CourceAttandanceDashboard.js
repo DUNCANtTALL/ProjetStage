@@ -22,7 +22,6 @@ const CourseAttendanceDashboard = () => {
     const summary = {};
 
     data.forEach(item => {
-      // Extract course initials (e.g., "ENG 1301")
       const courseInitials = item['Course Code'].split(' ')[0] + ' ' + item['Course Code'].split(' ')[1];
       
       if (!summary[courseInitials]) {
