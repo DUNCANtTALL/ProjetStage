@@ -24,12 +24,11 @@ function loadCSVData() {
 
 fs.watch(csvFilePath, (eventType) => {
   if (eventType === 'change') {
-    console.log('CSV file changed, reloading...');
+    console.log('CSV file changed,reloading:');
     loadCSVData();
   }
 });
 
-// Load the initial CSV data
 loadCSVData();
 
 app.use(cors({
