@@ -2,10 +2,6 @@ import pandas as pd
 
 def remove_redundant_lines(file_path):
     df = pd.read_csv(file_path)
-    df['Class Date'] = pd.to_datetime(df['Class Date'])
-    df_sorted = df.sort_values(by='Class Date')
-    df_unique = df_sorted.drop_duplicates(subset=['Course Code', 'SIS Student ID'], keep='last')    
+    # Drop duplicates based on the specified columns
+    df_unique = df.drop_duplicates(subset=['Course Code', 'SIS Student ID', 'Class Date'], keep='first')
     df_unique.to_csv(file_path, index=False)
-
-
-
