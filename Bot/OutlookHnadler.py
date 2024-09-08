@@ -116,7 +116,7 @@ def main2():
         login_to_outlook(driver, 'bot@aui.ma', 'Bot@123456789')
         wait_for_email(driver)
         click_dynamic_link(driver)
-        time.sleep(3)
+        time.sleep(5)
         read_email_content(driver)
     except Exception as e:
         logging.error(f"Error during script execution: {e}")
