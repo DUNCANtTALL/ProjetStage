@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import AttendanceSummaryDashboard from './Components/AttandenceSymmaryDashboard';
 import CourseAttendanceDashboard from './Components/CourceAttandanceDashboard';
 import CourseAttendanceComparison from './Components/CourseAttendanceComparison';
 import DetailedAttendanceRecords from './Components/DetailedAttendanceRecords';
-
+import AttendanceSummaryDashboard from './Components/AttendanceSummaryDashboard';
 import MenuBar from './Components/MenuBar';
+
 
 import { Container, Typography } from '@mui/material';
 

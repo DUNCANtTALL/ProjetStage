@@ -10,55 +10,70 @@ const DetailedAttendanceRecords = () => {
   const [attendanceFilter, setAttendanceFilter] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch attendance data from the API once
-  useEffect(() => {
-    axios.get('http://192.168.56.1:3000/api/attendance')
-      .then(response => {
-        setData(response.data);
-        setFilteredData(response.data); // Initially show all data
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  
+  
+  useEffect (()=> {
+    const fetcheData = async () =>{
+        try {
+            const response = await axios.get('http://192.168.56.1:3000/api/attendance'); // Wait for the API response
+            setData(response.data);
+            setFilteredData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error); 
+        }        
+      
 
-  // Memoize unique course codes for the dropdown to avoid recalculating
+    } 
+    fetcheData();
+},[]);
+
   const courseOptions = useMemo(() => {
-    return Array.from(new Set(data.map(item => item['Course Code'])));
+    const Courses = new Set(); 
+    for (let i = 0; i < data.length; i++) {
+      Courses.add(data[i]['Course Code']); 
+     // console.log("set:"+Courses);
+     //const tab = Array.from(Courses); 
+     //console.log("tab:"+tab);
+
+    }
+    return Array.from(Courses); //convertion en tab
   }, [data]);
-
-  // Handle filtering by course, attendance, and search query
+  
+  
   const filterData = useCallback(() => {
-    let filtered = data;
-
-    // Apply course filter
-    if (courseFilter) {
-      filtered = filtered.filter(item => item['Course Code'] === courseFilter);
+    let filtered = [];
+  
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
+  
+      if (courseFilter && item['Course Code'] !== courseFilter) {
+        continue;
+      }
+  
+      if (attendanceFilter && item['Attendance'] !== attendanceFilter) {
+        continue;
+      }
+  
+      if (searchQuery) {
+        const courseCodeMatch = item['Course Code'].toLowerCase().includes(searchQuery.toLowerCase());
+        const studentIdMatch = item['SIS Student ID'].toLowerCase().includes(searchQuery.toLowerCase());
+  
+        if (courseCodeMatch === false && studentIdMatch === false)  {
+          continue;
+        }
+      }
+  
+      filtered.push(item);
     }
-
-    // Apply attendance filter
-    if (attendanceFilter) {
-      filtered = filtered.filter(item => item['Attendance'] === attendanceFilter);
-    }
-
-    // Apply search filter
-    if (searchQuery) {
-      const lowerCaseQuery = searchQuery.toLowerCase();
-      filtered = filtered.filter(item =>
-        item['Course Code'].toLowerCase().includes(lowerCaseQuery) ||
-        item['SIS Student ID'].toLowerCase().includes(lowerCaseQuery)
-      );
-    }
-
+  
     setFilteredData(filtered);
   }, [data, courseFilter, attendanceFilter, searchQuery]);
-
-  // Trigger data filtering whenever filters or search query change
+  
   useEffect(() => {
     filterData();
   }, [courseFilter, attendanceFilter, searchQuery, filterData]);
 
-  // Columns for DataGrid
+  
   const columns = [
     { field: 'Course Code', headerName: 'Course Code', width: 150 },
     { field: 'SIS Student ID', headerName: 'SIS Student ID', width: 150 },
@@ -66,10 +81,13 @@ const DetailedAttendanceRecords = () => {
     { field: 'Count', headerName: 'Count', width: 150 },
   ];
 
-  // Handlers for filter and search input changes
-  const handleSearchChange = (event) => setSearchQuery(event.target.value);
-  const handleCourseFilterChange = (event) => setCourseFilter(event.target.value);
-  const handleAttendanceFilterChange = (event) => setAttendanceFilter(event.target.value);
+  const handleInputChange = (setter) => (event) => {
+    setter(event.target.value);
+  };
+  
+  const handleSearchChange = handleInputChange(setSearchQuery);
+  const handleCourseFilterChange = handleInputChange(setCourseFilter);
+  const handleAttendanceFilterChange = handleInputChange(setAttendanceFilter);
 
   return (
     <Container>
@@ -123,7 +141,7 @@ const DetailedAttendanceRecords = () => {
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
-            getRowId={(row) => row['SIS Student ID']}
+            getRowId={(row) => `${row['Course Code']}-${row['SIS Student ID']}-${row['Class Date']}`} // Composite key
           />
         </div>
       </Paper>
